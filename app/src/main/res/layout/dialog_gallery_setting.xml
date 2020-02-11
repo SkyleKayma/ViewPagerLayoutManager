@@ -5,13 +5,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#66000000"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
         android:paddingLeft="10dp"
+        android:paddingTop="20dp"
         android:paddingRight="10dp"
-        android:paddingTop="20dp">
+        android:paddingBottom="20dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -30,11 +30,6 @@
                 android:layout_gravity="end"
                 android:textColor="#fff" />
         </FrameLayout>
-
-        <SeekBar
-            android:id="@+id/sb_item_space"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -55,11 +50,6 @@
                 android:textColor="#fff" />
         </FrameLayout>
 
-        <SeekBar
-            android:id="@+id/sb_interval"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,11 +68,6 @@
                 android:layout_gravity="end"
                 android:textColor="#fff" />
         </FrameLayout>
-
-        <SeekBar
-            android:id="@+id/sb_max_alpha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -103,11 +88,6 @@
                 android:textColor="#fff" />
         </FrameLayout>
 
-        <SeekBar
-            android:id="@+id/sb_min_alpha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,11 +107,6 @@
                 android:textColor="#fff" />
         </FrameLayout>
 
-        <SeekBar
-            android:id="@+id/sb_speed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +118,7 @@
                 android:text="@string/toggle_reverse"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_reverse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +136,7 @@
                 android:text="@string/toggle_infinite"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_infinite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +154,7 @@
                 android:text="@string/change_orientation"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_change_orientation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +172,7 @@
                 android:text="@string/toggle_auto_center"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_auto_center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -215,7 +190,7 @@
                 android:text="@string/toggle_bring_center_in_front"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_center_in_front"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -233,7 +208,7 @@
                 android:text="@string/flip_rotate"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_flip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,11 +226,36 @@
                 android:text="@string/rotate_from_edge"
                 android:textColor="#fff" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/s_rotate_from_edge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end" />
         </FrameLayout>
+
+        <SeekBar
+            android:id="@+id/sb_item_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/sb_interval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/sb_max_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/sb_min_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/sb_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>

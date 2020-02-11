@@ -3,9 +3,6 @@ package com.leochuan;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +10,12 @@ import android.view.animation.Interpolator;
 
 import java.util.ArrayList;
 
-import static android.support.v7.widget.RecyclerView.NO_POSITION;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 
 /**
  * An implementation of {@link RecyclerView.LayoutManager} which behaves like view pager.
@@ -61,7 +63,7 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
      * Many calculations are made depending on orientation. To keep it clean, this interface
      * helps {@link LinearLayoutManager} make those decisions.
      * Based on {@link #mOrientation}, an implementation is lazily created in
-     * {@link #ensureLayoutState} method.
+     * {@link #ensureLayoutState()} method.
      */
     protected OrientationHelper mOrientationHelper;
 
@@ -150,8 +152,12 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
         super(context);
         setOrientation(orientation);
         setReverseLayout(reverseLayout);
-        setAutoMeasureEnabled(true);
         setItemPrefetchEnabled(false);
+    }
+
+    @Override
+    public boolean isAutoMeasureEnabled() {
+        return true;
     }
 
     @Override
@@ -316,8 +322,8 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
      * laid out at the end of the UI, second item is laid out before it etc.
      * <p>
      * For horizontal layouts, it depends on the layout direction.
-     * When set to true, If {@link android.support.v7.widget.RecyclerView} is LTR, than it will
-     * layout from RTL, if {@link android.support.v7.widget.RecyclerView}} is RTL, it will layout
+     * When set to true, If {@link RecyclerView} is LTR, than it will
+     * layout from RTL, if {@link RecyclerView}} is RTL, it will layout
      * from LTR.
      */
     public void setReverseLayout(boolean reverseLayout) {
@@ -434,7 +440,7 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public boolean onAddFocusables(RecyclerView recyclerView, ArrayList<View> views, int direction, int focusableMode) {
+    public boolean onAddFocusables(@NonNull RecyclerView recyclerView, @NonNull ArrayList<View> views, int direction, int focusableMode) {
         final int currentPosition = getCurrentPosition();
         final View currentView = findViewByPosition(currentPosition);
         if (currentView == null) return true;
