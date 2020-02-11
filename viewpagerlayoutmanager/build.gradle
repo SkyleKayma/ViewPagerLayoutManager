@@ -35,35 +35,37 @@ def websiteUrl = 'https://github.com/leochuan/ViewPagerLayoutManager'
 def date = new Date()
 def projectName = 'viewpager-layout-manager'
 
-task createPom << {
-    pom {
-        project {
-            groupId 'rouchuan.viewpagerlayoutmanager'
-            artifactId 'viewpagerlayoutmanager'
-            version currentVersion
-            packaging 'aar'
-            name projectName
-            url websiteUrl
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                }
-            }
-            developers {
-                developer {
-                    id 'leochuan'
-                    name 'Shen Ruo Chuan'
-                    email 'ruochuan.leo@gmail.com'
-                }
-            }
-            scm {
-                connection "${websiteUrl}.git"
-                developerConnection "${websiteUrl}.git"
+task createPom {
+    doLast {
+        pom {
+            project {
+                groupId 'rouchuan.viewpagerlayoutmanager'
+                artifactId 'viewpagerlayoutmanager'
+                version currentVersion
+                packaging 'aar'
+                name projectName
                 url websiteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'leochuan'
+                        name 'Shen Ruo Chuan'
+                        email 'ruochuan.leo@gmail.com'
+                    }
+                }
+                scm {
+                    connection "${websiteUrl}.git"
+                    developerConnection "${websiteUrl}.git"
+                    url websiteUrl
+                }
             }
-        }
-    }.writeTo("build/viewpagerlayoutmanager-${currentVersion}.pom")
+        }.writeTo("build/viewpagerlayoutmanager-${currentVersion}.pom")
+    }
 
     def builder = new JsonBuilder()
     def root = builder {

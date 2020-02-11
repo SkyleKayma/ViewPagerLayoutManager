@@ -3,6 +3,7 @@ package com.leochuan;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
@@ -413,7 +414,7 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
                     mPendingScrollPosition * -mInterval : mPendingScrollPosition * mInterval;
         }
 
-        layoutItems(recycler);
+        layoutItems(recycler, scrap);
     }
 
     private View getMeasureView(RecyclerView.Recycler recycler, RecyclerView.State state, int index) {
@@ -615,12 +616,12 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
         mOffset += realDx;
 
         //handle recycle
-        layoutItems(recycler);
+        layoutItems(recycler, null);
 
         return willScroll;
     }
 
-    private void layoutItems(RecyclerView.Recycler recycler) {
+    private void layoutItems(RecyclerView.Recycler recycler, @Nullable View scrapBis) {
         detachAndScrapAttachedViews(recycler);
         positionCache.clear();
 
@@ -668,7 +669,13 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
                     if (delta == 0) delta = itemCount;
                     adapterPosition = itemCount - delta;
                 }
-                final View scrap = recycler.getViewForPosition(adapterPosition);
+
+                final View scrap;
+                if (scrapBis != null && adapterPosition == 0) {
+                    scrap = scrapBis;
+                } else {
+                    scrap = recycler.getViewForPosition(adapterPosition);
+                }
                 measureChildWithMargins(scrap, 0, 0);
                 resetViewProperty(scrap);
                 // we need i to calculate the real offset of current view
@@ -738,7 +745,7 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
 
     /**
      * when the target offset reach this,
-     * the view will be removed and recycled in {@link #layoutItems(RecyclerView.Recycler)}
+     * the view will be removed and recycled in {@link #layoutItems(RecyclerView.Recycler, View)}
      */
     protected float maxRemoveOffset() {
         return mOrientationHelper.getTotalSpace() - mSpaceMain;
@@ -746,7 +753,7 @@ public abstract class ViewPagerLayoutManager extends LinearLayoutManager {
 
     /**
      * when the target offset reach this,
-     * the view will be removed and recycled in {@link #layoutItems(RecyclerView.Recycler)}
+     * the view will be removed and recycled in {@link #layoutItems(RecyclerView.Recycler, View)}
      */
     protected float minRemoveOffset() {
         return -mDecoratedMeasurement - mOrientationHelper.getStartAfterPadding() - mSpaceMain;
